@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-departments',
-  imports: [],
+  standalone: true,
   templateUrl: './departments.html',
-  styleUrl: './departments.css'
 })
-export class Departments {
-
-}
+export class Departments {}
