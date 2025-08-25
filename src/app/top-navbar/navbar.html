@@ -1,17 +1,19 @@
 <mat-toolbar class="flex justify-between items-center">
   <div class="flex justify-center items-center">
-    <button matIconButton class="" aria-label="Example icon-button with menu icon">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+    <button
+      mat-icon-button
+      routerLink="/departments"
+      aria-label="Example icon-button with menu icon"
+    >
+      <span class="material-symbols-outlined text-blue-300"> home </span>
     </button>
-    <span>My App</span>
-  </div>
-  <div class="flex justify-center items-center">
-    <button mat-icon-button class="group rounded-full p-2">
-      <mat-icon class="group-hover:!text-red-600">favorite</mat-icon>
-    </button>
-    <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <button
+      class="group-hover:!text-blue-500"
+      mat-icon-button
+      aria-label="Analytics"
+      routerLink="/analytics"
+    >
+      <span class="material-symbols-outlined text-blue-300">speed</span>
     </button>
   </div>
 </mat-toolbar>
-

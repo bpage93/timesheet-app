@@ -5,9 +5,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'top-navbar',
   standalone: true,
   imports: [RouterLink, MatToolbarModule, MatIconModule, MatButtonModule],
   templateUrl: './navbar.html',
 })
-export class Navbar {}
+export class TopNavbar {}
