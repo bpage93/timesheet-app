@@ -5,6 +5,7 @@ import { DepartmentInterFace } from '../interfaces/departmentInterface';
 import { MatCard } from '@angular/material/card';
 import { MatList } from '@angular/material/list';
 import { MatListItem } from '@angular/material/list';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-departments',
@@ -18,11 +19,12 @@ export class DepartmentsComponent implements OnInit {
 
   departmentsService = inject(DepartmentsService);
 
-  company: string = '';
+  goToDepartment(id: string): void {
+    this.router.navigate(['/timesheet', { id }]);
+  }
+  router = inject(Router);
 
   ngOnInit(): void {
     this.departments = this.departmentsService.departments;
-    this.company = this.departmentsService.company;
-    console.log(this.company);
   }
 }

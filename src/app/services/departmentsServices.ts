@@ -11,5 +11,4 @@ export class DepartmentsService {
     { id: '2', name: 'Sales' },
     { id: '3', name: 'Finance' },
   ];
-  company: string = 'mtech';
 }
