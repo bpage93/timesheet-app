@@ -5,14 +5,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
 import { signal } from '@angular/core';
 import { TopNavbar } from './top-navbar/topnavbar';
-import { TimesheetComponent } from './timesheet/timesheetComponent';
-
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule,TopNavbar, TimesheetComponent],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule, TopNavbar],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
