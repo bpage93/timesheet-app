@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DepartmentInterFace } from '../interfaces/departmentInterface';
-import { FormControl } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsService } from '../services/departmentsServices';
-import { MatCard } from '@angular/material/card';
+import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardContent } from '@angular/material/card';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { Emplyee } from '../interfaces/emplyee';
-import { JsonPipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-timesheet',
+  // Note: Added ReactiveFormsModule to imports for clarity
   imports: [
     MatCard,
     MatFormField,
@@ -22,8 +21,11 @@ import { JsonPipe } from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatCardContent
-],
+    MatCardContent,
+    MatIcon,
+    MatButtonModule,
+  
+  ],
   templateUrl: './timesheet.html',
   styleUrls: ['./timesheet.css'],
 })
@@ -38,9 +40,9 @@ export class TimesheetComponent implements OnInit {
 
   ngOnInit(): void {
     this.departments = this.departmentsService.departments;
-    this.department = this.departments.find(
-      (department) => department.id === this.route.snapshot.params['id']
-    );
+    // This line correctly reads the ':id' parameter from the URL
+    const id = this.route.snapshot.params['id'];
+    this.department = this.departments.find((department) => department.id === id);
   }
 
   addEmployee(): void {
