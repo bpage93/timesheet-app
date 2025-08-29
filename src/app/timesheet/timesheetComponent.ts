@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DepartmentInterFace } from '../interfaces/departmentInterface';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsService } from '../services/departmentsServices';
 import { MatCard, MatCardContent } from '@angular/material/card';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
@@ -9,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Emplyee } from '../interfaces/emplyee';
-
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-timesheet',
@@ -25,7 +26,7 @@ import { Emplyee } from '../interfaces/emplyee';
     MatCardContent,
     MatIcon,
     MatButtonModule,
-  
+    JsonPipe,
   ],
   templateUrl: './timesheet.html',
   styleUrls: ['./timesheet.css'],
@@ -33,7 +34,7 @@ import { Emplyee } from '../interfaces/emplyee';
 export class TimesheetComponent implements OnInit {
   departments!: DepartmentInterFace[];
   department: DepartmentInterFace | undefined;
-  employeeNameFC = new FormControl('');
+  employeeNameFC = new FormControl('', this.nameValidator());
   employees: Emplyee[] = [];
   employeeId = 0;
 
@@ -59,5 +60,19 @@ export class TimesheetComponent implements OnInit {
 
       this.employeeNameFC.setValue('');
     }
+  }
+
+  nameValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      let error = null;
+      if (this.employees && this.employees.length) {
+        this.employees.forEach((employee) => {
+          if (employee.name.toLowerCase() === control.value.toLowerCase()) {
+            error = { duplicate: true };
+          }
+        });
+      }
+      return error;
+    };
   }
 }

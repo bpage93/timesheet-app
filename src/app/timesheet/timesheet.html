@@ -11,7 +11,9 @@
         type="text"
         placeholder="e.g., Jane Doe"
         (keyup.enter)="addEmployee()"
+        [disabled]="employeeNameFC.invalid"
       />
+      <mat-error *ngIf="employeeNameFC.hasError('duplicate')">Duplicate Name</mat-error>
 
       <button
         class="add-employee-button pr-4"
@@ -19,6 +21,7 @@
         matSuffix
         color="primary"
         (click)="addEmployee()"
+        [disabled]="employeeNameFC.invalid"
         aria-label="Add employee button"
       >
         <mat-icon fontSet="material-symbols-outlined">add</mat-icon>
@@ -31,4 +34,5 @@
       }
     </mat-card-content>
   </mat-card>
+  <div>{{ employees | json }}</div>
 </div>
