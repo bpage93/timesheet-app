@@ -24,8 +24,8 @@ export class DepartmentsComponent implements OnInit {
 
   // This method is not used by [routerLink].
   // To use it, your HTML would need: (click)="goToDepartment(department.id)"
-  goToDepartment(id: string): void {
-    // Note: The correct way to pass a route parameter is without the object literal.
-    this.router.navigate(['/timesheet', id]);
-  }
+  // goToDepartment(id: string): void {
+  //   // Note: The correct way to pass a route parameter is without the object literal.
+  //   this.router.navigate(['/timesheet', id]);
+  // }
 }

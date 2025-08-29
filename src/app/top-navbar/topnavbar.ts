@@ -10,4 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [RouterLink, MatToolbarModule, MatIconModule, MatButtonModule],
   templateUrl: './navbar.html',
 })
-export class TopNavbar {}
+export class TopNavbar {
+
+}

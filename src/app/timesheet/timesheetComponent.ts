@@ -13,6 +13,7 @@ import { Emplyee } from '../interfaces/emplyee';
 
 @Component({
   selector: 'app-timesheet',
+  standalone: true,
   // Note: Added ReactiveFormsModule to imports for clarity
   imports: [
     MatCard,

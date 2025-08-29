@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { DepartmentsComponent } from './departments/departments';
-import { TimesheetComponent } from './timesheet/timesheet.component';
+import { TimesheetComponent } from './timesheet/timesheetComponent';
+import { AnalyticsComponent } from './analytics/analytics';
+import { AboutMeComponent } from './about-mecomponent/about-mecomponent';
+import { ContactComponent } from './contact/contact';
 
 export const routes: Routes = [
   {
@@ -15,4 +18,7 @@ export const routes: Routes = [
   },
   // It's good practice to have a default route.
   { path: '', redirectTo: 'departments', pathMatch: 'full' },
+  { path: 'analytics', component: AnalyticsComponent },
+  { path: 'about-mecomponent', component: AboutMeComponent },
+  { path: 'contact-page', component: ContactComponent }
 ];
