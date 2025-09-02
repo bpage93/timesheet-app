@@ -13,7 +13,11 @@
         (keyup.enter)="addEmployee()"
         [disabled]="employeeNameFC.invalid"
       />
-      <mat-error *ngIf="employeeNameFC.hasError('duplicate')">Duplicate Name</mat-error>
+      @for (error of employeeNameFC.errors | keyvalue; track error.key) {
+        @if (error.key === 'duplicate') {
+          <mat-error>Duplicate Name</mat-error>
+        }
+      }
 
       <button
         class="add-employee-button pr-4"
@@ -45,22 +49,27 @@
         <th>Total Hours</th>
       </thead>
       <tbody>
-        @for (employee of employees; track employee.id) {
-          <tr>
-            <td>{{ employee.name }}</td>
-            @for (day of weekdays; track $index) {
-              <td>
-                <input
-                  type="number"
-                  [id]="day + '-' + employee.id"
-                  [(ngModel)]="employee[day]"
-                  class="hours-input"
-                  aria-label="Hours for {{ employee.name }} on {{ day }}"
-                />
-              </td>
-            }
-            <td class="total-cell">{{ getTotalHours(employee) }}</td>
-          </tr>
+        @for (employee of employees; let i = $index; track employee.id) {
+        <tr>
+          <td>{{ employee.name }}</td>
+          @for (day of weekdays; track $index) {
+          <td>
+            <input
+              type="number"
+              [id]="day + '-' + employee.id"
+              [(ngModel)]="employee[day]"
+              class="hours-input"
+              aria-label="Hours for {{ employee.name }} on {{ day }}"
+            />
+          </td>
+          }
+          <td class="total-cell">{{ getTotalHours(employee) }}</td>
+          <td>
+            <button class="material-symbols-outlined" (click)="deleteEmployee(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
         }
       </tbody>
     </table>
