@@ -1,1 +1,22 @@
-<p>analytics-table works!</p>
+<div>
+  <table >
+    <thead class="header">
+      <th class="px-6 py-4 text-left font-bold text-gray-700 ">Name</th>
+      <th class="px-6 py-4 text-left font-bold text-gray-700 ">Total Hours</th>
+      <th class="px-6 py-4 text-left font-bold text-gray-700 ">Pay Rate</th>
+      <th class="px-6 py-4 text-left font-bold text-gray-700 ">Total Pay</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let employee of employees; let i = index">
+        <td>{{ employee.name }}</td>
+        @for (day of weekdays; track day) {
+        <td>{{ employee[day] }}</td>
+        }
+        <td class="total-cell"></td>
+        <td>{{ employee.payRate }}/hr</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

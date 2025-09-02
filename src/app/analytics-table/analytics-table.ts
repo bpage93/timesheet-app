@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Employee } from '../interfaces/employee'; // Import the interface
 
@@ -10,6 +10,9 @@ import { Employee } from '../interfaces/employee'; // Import the interface
   styleUrls: ['./analytics-table.css'],
 })
 export class AnalyticsTableComponent {
+  @Input()
+  departmentId: string | undefined;
+
   weekdays: string[] = [
     'monday',
     'tuesday',
@@ -18,10 +21,9 @@ export class AnalyticsTableComponent {
     'friday',
     'saturday',
     'sunday',
-  ]; //
-  employees: Employee[] = []; //
+  ];
+  employees: Employee[] = [];
   employeeData: Employee[] = [
-    //
     {
       departmentId: '1',
       friday: 6,
@@ -77,4 +79,10 @@ export class AnalyticsTableComponent {
   ];
 
   constructor() {}
+
+  ngOnInit(): void {
+    this.employees = this.employeeData.filter(
+      (employee) => employee.departmentId === this.departmentId
+    );
+  }
 }
