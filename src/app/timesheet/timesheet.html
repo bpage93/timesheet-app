@@ -13,11 +13,10 @@
         (keyup.enter)="addEmployee()"
         [disabled]="employeeNameFC.invalid"
       />
-      @for (error of employeeNameFC.errors | keyvalue; track error.key) {
-        @if (error.key === 'duplicate') {
-          <mat-error>Duplicate Name</mat-error>
-        }
-      }
+      @for (error of employeeNameFC.errors | keyvalue; track error.key) { @if (error.key ===
+      'duplicate') {
+      <mat-error>Duplicate Name</mat-error>
+      } }
 
       <button
         class="add-employee-button pr-4"
@@ -44,8 +43,9 @@
       <thead>
         <th>Name</th>
         @for (day of weekdays; track $index) {
-        <th class="p-6">{{ day }}</th>
+        <th class="p-6">{{ day | titlecase }}</th>
         }
+
         <th>Total Hours</th>
       </thead>
       <tbody>

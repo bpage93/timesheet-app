@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Employee } from '../interfaces/employee'; // Import the interface
+import { TimesheetComponent } from '../timesheet/timesheetComponent';
 
 @Component({
   selector: 'app-analytics-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TimesheetComponent],
   templateUrl: './analytics-table.html',
   styleUrls: ['./analytics-table.css'],
 })
@@ -84,5 +85,10 @@ export class AnalyticsTableComponent {
     this.employees = this.employeeData.filter(
       (employee) => employee.departmentId === this.departmentId
     );
+  }
+
+  getTotalHours(employee: any): number {
+    // Sums the hours for each day in weekdays for the given employee
+    return this.weekdays.reduce((total, day) => total + (employee[day] || 0), 0);
   }
 }

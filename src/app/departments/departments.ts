@@ -13,19 +13,16 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './departments.html',
 })
 export class DepartmentsComponent implements OnInit {
-  departments: DepartmentInterFace[] | undefined;
+  departments: DepartmentInterFace[] = [];
 
   private departmentsService = inject(DepartmentsService);
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.departments = this.departmentsService.departments;
+    this.departmentsService.getDepartments().subscribe((departments: DepartmentInterFace[]) => {
+      this.departments = departments;
+    });
   }
 
-  // This method is not used by [routerLink].
-  // To use it, your HTML would need: (click)="goToDepartment(department.id)"
-  // goToDepartment(id: string): void {
-  //   // Note: The correct way to pass a route parameter is without the object literal.
-  //   this.router.navigate(['/timesheet', id]);
-  // }
+
 }

@@ -10,7 +10,7 @@ import { TopNavbar } from './top-navbar/topnavbar';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule, TopNavbar],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatIconModule, TopNavbar, ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
