@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { DepartmentInterFace } from '../interfaces/departmentInterface';
-import { FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormControl, ValidatorFn, AbstractControl, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepartmentsService } from '../services/departmentsServices';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -9,7 +10,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { Emplyee } from '../interfaces/emplyee';
+import { Employee } from '../interfaces/employee';
 import { JsonPipe } from '@angular/common';
 
 @Component({
@@ -19,6 +20,7 @@ import { JsonPipe } from '@angular/common';
   imports: [
     MatCard,
     MatFormField,
+    FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -26,7 +28,7 @@ import { JsonPipe } from '@angular/common';
     MatCardContent,
     MatIcon,
     MatButtonModule,
-    JsonPipe,
+    CommonModule,
   ],
   templateUrl: './timesheet.html',
   styleUrls: ['./timesheet.css'],
@@ -35,8 +37,17 @@ export class TimesheetComponent implements OnInit {
   departments!: DepartmentInterFace[];
   department: DepartmentInterFace | undefined;
   employeeNameFC = new FormControl('', this.nameValidator());
-  employees: Emplyee[] = [];
+  employees: Employee[] = [];
   employeeId = 0;
+  weekdays: string[] = [
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
+  ];
 
   constructor(private route: ActivatedRoute, private departmentsService: DepartmentsService) {}
 
@@ -56,6 +67,13 @@ export class TimesheetComponent implements OnInit {
         departmentId: this.department?.id,
         name: this.employeeNameFC.value,
         payRate: Math.floor(Math.random() * 50) + 50,
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
       });
 
       this.employeeNameFC.setValue('');
@@ -74,5 +92,20 @@ export class TimesheetComponent implements OnInit {
       }
       return error;
     };
+  }
+  getTotalHours(employee: Employee): number {
+    return (
+      employee.monday +
+      employee.tuesday +
+      employee.wednesday +
+      employee.thursday +
+      employee.friday +
+      employee.saturday +
+      employee.sunday
+    );
+  }
+
+  deleteEmployee(index: number): void {
+    this.employees.splice(index, 1);
   }
 }
