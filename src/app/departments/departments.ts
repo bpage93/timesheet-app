@@ -5,11 +5,12 @@ import { DepartmentInterFace } from '../interfaces/departmentInterface';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { Router, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-departments',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatListModule, RouterModule],
+  imports: [CommonModule, MatCardModule, MatListModule, RouterModule, HttpClientModule],
   templateUrl: './departments.html',
 })
 export class DepartmentsComponent implements OnInit {

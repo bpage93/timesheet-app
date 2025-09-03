@@ -6,7 +6,7 @@ import { TimesheetComponent } from '../timesheet/timesheetComponent';
 @Component({
   selector: 'app-analytics-table',
   standalone: true,
-  imports: [CommonModule, TimesheetComponent],
+  imports: [CommonModule, ],
   templateUrl: './analytics-table.html',
   styleUrls: ['./analytics-table.css'],
 })
